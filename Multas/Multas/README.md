@@ -90,4 +90,28 @@ Interagir com agentes:
 
 Criar um controller --> 3 opcao (com entity framework)
 escolher a classe agentes
+http://localhost:4487/agentes
 
+
+
+########************************************************#########
+			VII.Index.cshtml
+
+listagem dos agentes
+@model IEnumerable<Multas.Models.Agentes>
+
+
+Helpers:   
+	@Html.ActionLink("Create New", "Create")
+	@Html.DisplayNameFor(model => model.Fotografia) label associada a um dado da BD
+ @Html.ActionLink("Edit", "Edit",
+	 new { id=item.ID }) |   -> adiciona ao comando editar, o id do agente(.ID) e o id= é um parametro.
+
+
+########************************************************#########
+			VII.RouteConfig.cs
+
+ defaults: new { controller = "Agentes", action = "Index", id = UrlParameter.Optional }
+            );
+
+mudar de home para agentes
