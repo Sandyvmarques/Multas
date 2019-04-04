@@ -75,3 +75,19 @@ como fazer fusao de branches.
 	2- Merge from 
 	3-merge branch from Modelo
 	4- Merge
+
+como criar novos branches.
+	1- branches
+	2-master
+	3- new branch
+
+########************************************************#########
+			VII.Branch Agente 
+
+Interagir com agentes:
+	-Criar um formulario (Fica numa view)
+	- Controller (um para o pedido e outro para processar os dados que vem da view)
+
+Criar um controller --> 3 opcao (com entity framework)
+escolher a classe agentes
+
