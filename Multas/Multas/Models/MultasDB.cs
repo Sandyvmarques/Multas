@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Conventions; 
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,11 @@ namespace Multas.Models
 {
 	public class MultasDB : DbContext
 	{
+
+		/*
+		 * rebuild 
+		 * Update-database -Force
+		 */
 		public MultasDB() : base("MultasConnectionString") { }
 
 		// vamos colocar, aqui, as instruções relativas às tabelas do 'negócio'
@@ -17,9 +23,10 @@ namespace Multas.Models
 		public virtual DbSet<Agentes> Agentes { get; set; } // tabela Agentes
 		public virtual DbSet<Viaturas> Viaturas { get; set; } // tabela Viaturas
 
-
+		//Criação das chaves 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
+			//relação muitos para muitos e um para muitos 
 			modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 			modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 			base.OnModelCreating(modelBuilder);

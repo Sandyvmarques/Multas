@@ -19,8 +19,12 @@ namespace Multas.Models {
 
 		public DateTime DataDaMulta { get; set; }
 
+		//criação de chaves forasteiras
 
-
+		//FK para os Agentes 
+		// uma multa tem um atributo chamado agente --> Ligação da multa com um agente 
+		//o Agente tem uma lista de multa logo associa se as multas aos agentes 
+		public Agentes Agente { get; set; }
 
 	}
 }
