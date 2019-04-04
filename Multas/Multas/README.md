@@ -1,7 +1,5 @@
 			Multas 04/04
 
-
-
 #########************************************************#########
 			I. MultasDB.cs
 		/*
@@ -71,3 +69,9 @@ var agentes = new List<Agentes> -> os objetos desta lista vao ser elementos do t
 rebuild
 package mang
  Update-Database
+
+como fazer fusao de branches.
+	1- clica-se no master 
+	2- Merge from 
+	3-merge branch from Modelo
+	4- Merge
