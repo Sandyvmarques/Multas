@@ -16,5 +16,7 @@ namespace Multas.Models {
 
 		public string Fotografia { get; set; }
 
+		//identifica as multas passadas pelo agente
+		public ICollection<Multas> ListaDasMultas { get; set; }
 	}
 }

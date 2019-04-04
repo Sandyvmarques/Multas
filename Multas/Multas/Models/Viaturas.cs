@@ -21,6 +21,8 @@ namespace Multas.Models {
 
 		public string CodPostalDono { get; set; }
 
+		//lista das multas a que uma viatura foi associada
+		public ICollection<Multas> ListaDasMultas { get; set; }
 
 	}
 }
