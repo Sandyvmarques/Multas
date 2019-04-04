@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace Multas.Models {
-   public class Multas {
+	public class Multas {
 
 
 		// id, data, valor, infracao, FK viatura, FK agente, FK condutor
@@ -21,10 +22,19 @@ namespace Multas.Models {
 
 		//criação de chaves forasteiras
 
-		//FK para os Agentes 
-		// uma multa tem um atributo chamado agente --> Ligação da multa com um agente 
-		//o Agente tem uma lista de multa logo associa se as multas aos agentes 
+		[ForeignKey("Agente")]
+		public int AgenteFK { get; set; }
 		public Agentes Agente { get; set; }
+										  
+
+		[ForeignKey("Condutor")]
+		public int CondutorFk { get; set; }
+		public Condutores Condutor { get; set; }
+
+
+		[ForeignKey("Viatura")]
+		public int ViaturaFk { get; set; }
+		public Viaturas Viatura { get; set; }
 
 	}
 }

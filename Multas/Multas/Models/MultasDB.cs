@@ -10,10 +10,6 @@ namespace Multas.Models
 	public class MultasDB : DbContext
 	{
 
-		/*
-		 * rebuild 
-		 * Update-database -Force
-		 */
 		public MultasDB() : base("MultasConnectionString") { }
 
 		// vamos colocar, aqui, as instruções relativas às tabelas do 'negócio'
