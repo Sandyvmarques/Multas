@@ -26,13 +26,14 @@
             @Html.DisplayFor(model => model.Esquadra)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Fotografia)
-        </dt>
+		<dt>
+		
+			@Html.DisplayNameFor(model => model.Fotografia)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Fotografia)
-        </dd>
+		<dd>
+			<img src="~/imagens/@Model.Fotografia" height="150" />
+		</dd>
 
     </dl>
 </div>

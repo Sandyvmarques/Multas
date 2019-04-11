@@ -94,11 +94,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\MultasDB.mdf" />
+    <Content Include="App_Data\MultasDB_log.ldf">
+      <DependentUpon>MultasDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="imagens\AndreSilveira.jpg" />
+    <Content Include="imagens\AntonioRocha.jpg" />
+    <Content Include="imagens\AugustoCarvalho.jpg" />
+    <Content Include="imagens\BeatrizPinto.jpg" />
+    <Content Include="imagens\ClaudiaPinto.jpg" />
+    <Content Include="imagens\JoseAlves.jpg" />
+    <Content Include="imagens\LurdesVieira.jpg" />
+    <Content Include="imagens\PauloVieira.jpg" />
+    <Content Include="imagens\RuiVieira.jpg" />
+    <Content Include="imagens\TaniaVieira.jpg" />
     <Content Include="Modelo.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -149,9 +163,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
