@@ -134,9 +134,21 @@ mudar de home para agentes
 <dl  --> listagm de dados
 <img src="~/imagens/@Model.Fotografia"/>
 #########************************************************#########
-			3. 
+			3. Agentes.cs
+\d{4}-\d{3}\w* -->  validacao de um codigo postal 
+		[A-Z] --> [] conjunto de simbolos, de onde sai  um elemento
+		[a-b] 
+		()-> () serve para agrupamentos,
+					logo para ter um espaço em branco é só ( )
+		+->	  é um quantificador  1 ou mais 
+		*->   é um quantificador  0 ou mais
+		?->   é um quantificador  0 ou 1
+		|->   separa  opcoes da escolha
+		{i}-> é um quantificador, indica que sao exatamente i valores
+		{i,j}-> é um quantificador, indica que sao exatamente entre  i e j  valores
 
-
+		[A-ZÁÉÍÓÚ] [a-záéíóúàèìòùãõâêîôûçñ] + ((( ((e|de|da|do|das|dos) )?) |-|') [A-ZÁÉÍÓÚ] [a-a-záéíóúàèìòùãõâêîôûçñ]+){2,3}
+		( [A-ZÁÉÍÓÚa-záéíóúàèìòùãõâêîôûçñ] + ( |-|') ?)
 #########************************************************#########
 			4. 
 #########************************************************#########
