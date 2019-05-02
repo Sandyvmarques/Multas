@@ -20,25 +20,39 @@ namespace Multas.Controllers
 			//procura a totalidade dos agentes na BD
 			//intrucao feita em LINQ(linguagem de interrogacao, semelhante ao SQL.)
 			//comando SELECT * FROM Agentes ORDER BY nome 
+			// db.Agentes.OrderBy(a=>a.Nome).ToList(); --> query feita na bd  
 			var lista = db.Agentes.OrderBy(a=>a.Nome).ToList();
 
 			return View(lista);
         }
 
         // GET: Agentes/Details/5
+		/// <summary>
+		/// Mostra os dados de um agente
+		/// </summary>
+		/// <param name="id">identifica o agente</param>
+		/// <returns>devolve a View com os dados dos agentes</returns>
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+				//vamos alterar esta resposta por defeito 
+				//return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+				//
+				// este erro ocorre porque o user anda a fazer asneiras
+
+				return RedirectToAction("Index");
+			}
 			//SELECT *FROM Agentes WHERE ID=id
-            Agentes agentes = db.Agentes.Find(id);
-            if (agentes == null)
+            Agentes agente = db.Agentes.Find(id);
+			//o agente foi encontrado?
+            if (agente == null)
             {
-                return HttpNotFound();
-            }
-            return View(agentes);
+				//o agente nao foi encontrado, porque o user esta a pesca
+				//return HttpNotFound();
+				return RedirectToAction("Index"); 
+					}
+            return View(agente);
         }
 
         // GET: Agentes/Create
@@ -67,32 +81,41 @@ namespace Multas.Controllers
         // GET: Agentes/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Agentes agentes = db.Agentes.Find(id);
-            if (agentes == null)
-            {
-                return HttpNotFound();
-            }
-            return View(agentes);
-        }
+			if (id == null)
+			{
+				//vamos alterar esta resposta por defeito 
+				//return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+				//
+				// este erro ocorre porque o user anda a fazer asneiras
+
+				return RedirectToAction("Index");
+			}
+			//SELECT *FROM Agentes WHERE ID=id
+			Agentes agente = db.Agentes.Find(id);
+			//o agente foi encontrado?
+			if (agente == null)
+			{
+				//o agente nao foi encontrado, porque o user esta a pesca
+				//return HttpNotFound();
+				return RedirectToAction("Index");
+			}
+			return View(agente);
+		}
 
         // POST: Agentes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Nome,Esquadra,Fotografia")] Agentes agentes)
+        public ActionResult Edit([Bind(Include = "ID,Nome,Esquadra,Fotografia")] Agentes agente)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(agentes).State = EntityState.Modified;
+                db.Entry(agente).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(agentes);
+            return View(agente);
         }
 
         // GET: Agentes/Delete/5
@@ -102,22 +125,45 @@ namespace Multas.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Agentes agentes = db.Agentes.Find(id);
-            if (agentes == null)
+            Agentes agente = db.Agentes.Find(id);
+            if (agente == null)
             {
                 return HttpNotFound();
             }
-            return View(agentes);
+            return View(agente);
         }
 
         // POST: Agentes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int? id)
         {
-            Agentes agentes = db.Agentes.Find(id);
-            db.Agentes.Remove(agentes);
-            db.SaveChanges();
+			if (id == null) {
+				return RedirectToAction("Index");
+			}
+			//procura o agente a remover
+			Agentes agente = db.Agentes.Find(id);
+			if (agente == null)
+			{
+				return RedirectToAction("Index");
+			}
+				try
+			{	
+				//da ordem de remocao do agente
+				db.Agentes.Remove(agente);
+				//consolida a remocao
+				db.SaveChanges();
+			}
+			catch(Exception) {
+				//devem aqui ser escritas todas as instrucoes que sao consideradas necessarias 
+
+				//informar que houve um erro 
+				ModelState.AddModelError("", "Não é possivel remover o Agente."+
+					"Provavelment, ele tem multas associadas a ele..");
+
+				//redirecionar para a pagina onde o erro foi gerado 
+				return View(agente);
+			}
             return RedirectToAction("Index");
         }
 

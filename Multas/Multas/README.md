@@ -118,7 +118,7 @@ mudar de home para agentes
 
 
 
-			Multas 04/11
+			Multas 11/04
 
 
 #########************************************************#########
@@ -149,74 +149,28 @@ mudar de home para agentes
 
 		[A-ZÁÉÍÓÚ] [a-záéíóúàèìòùãõâêîôûçñ] + ((( ((e|de|da|do|das|dos) )?) |-|') [A-ZÁÉÍÓÚ] [a-a-záéíóúàèìòùãõâêîôûçñ]+){2,3}
 		( [A-ZÁÉÍÓÚa-záéíóúàèìòùãõâêîôûçñ] + ( |-|') ?)
-#########************************************************#########
-			4. 
-#########************************************************#########
-			5.
-
-
-########************************************************#########
-			6.
-	
-
-########************************************************#########
-			7.
-
-########************************************************#########
-			8.
-
-########************************************************#########
-			9.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	Multas 04/11
+	Multas 02/05
 
 
 #########************************************************#########
-			1. 
-		
+			1. Agentes Controller
+Como se representa um relacionamento n-m?
+github do stor 
+caso a o proj nao corra -> apagar bd, rebuild , update-database
+///-> documentacao 
+int? id - o id  ou tem u m inteiro ou um valor nulo 
+
+
+
+ // POST: Agentes/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id) --> nao pode ser Delete()
+devido as especificacoes do c#
+        {
 
 
 #########************************************************#########
