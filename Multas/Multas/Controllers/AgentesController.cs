@@ -130,7 +130,12 @@ namespace Multas.Controllers
             {
                 return HttpNotFound();
             }
-            return View(agente);
+			//o agente foi encontrado 
+			//vou salvaguardar os dados para posterior validacao 
+			//guardar o ID do agente num cookie cifrado 
+			//guardar o ID do agente numa variavel de sessao
+			Session["Agente"] = agente.ID;
+			return View(agente);
         }
 
         // POST: Agentes/Delete/5
@@ -141,6 +146,15 @@ namespace Multas.Controllers
 			if (id == null) {
 				return RedirectToAction("Index");
 			}
+			// o id nao é null
+			// será o id o que eu espero receber
+			//vamor validar se o id esta correto 
+			if (id!= (int) Session["Agente"]) {
+				//ha aqui outro xico esperto 
+				return RedirectToAction("Index");
+			}
+
+
 			//procura o agente a remover
 			Agentes agente = db.Agentes.Find(id);
 			if (agente == null)
@@ -159,12 +173,14 @@ namespace Multas.Controllers
 
 				//informar que houve um erro 
 				ModelState.AddModelError("", "Não é possivel remover o Agente."+
-					"Provavelment, ele tem multas associadas a ele..");
+					"Provavelmente, o agente tem multas associadas.");
 
 				//redirecionar para a pagina onde o erro foi gerado 
 				return View(agente);
 			}
-            return RedirectToAction("Index");
+
+			
+			return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
