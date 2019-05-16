@@ -5,6 +5,12 @@ using System.Web;
 
 namespace Multas.Models {
    public class Viaturas {
+		public Viaturas()
+		{
+			//o objeto multas fica instanciado 
+			ListaDasMultas = new HashSet<Multas>();
+
+		}
 		public int ID { get; set; }
 
 		public string Matricula { get; set; }
@@ -22,7 +28,7 @@ namespace Multas.Models {
 		public string CodPostalDono { get; set; }
 
 		//lista das multas a que uma viatura foi associada
-		public ICollection<Multas> ListaDasMultas { get; set; }
+		public virtual ICollection<Multas> ListaDasMultas { get; set; }
 
 	}
 }

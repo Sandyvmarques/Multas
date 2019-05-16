@@ -29,12 +29,12 @@ namespace Multas.Models {
 
 		[ForeignKey("Condutor")]
 		public int CondutorFK { get; set; }
-		public Condutores Condutor { get; set; }
+		public virtual Condutores Condutor { get; set; }
 
 
 		[ForeignKey("Viatura")]
 		public int ViaturaFK { get; set; }
-		public Viaturas Viatura { get; set; }
+		public virtual Viaturas Viatura { get; set; }
 
 	}
 }

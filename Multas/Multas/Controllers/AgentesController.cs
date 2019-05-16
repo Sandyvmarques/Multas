@@ -38,9 +38,7 @@ namespace Multas.Controllers
             {
 				//vamos alterar esta resposta por defeito 
 				//return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-				//
 				// este erro ocorre porque o user anda a fazer asneiras
-
 				return RedirectToAction("Index");
 			}
 			//SELECT *FROM Agentes WHERE ID=id
