@@ -56,8 +56,15 @@
 			<td>@multa.LocalDaMulta</td>
 			<td><a href="/condutores/details/@multa.Condutor.ID">@multa.Condutor.Nome</a></td>
 			<td>
-			
-					</td>
+				@*link para a viatura*@
+				@*viatura*@
+				@Html.ActionLink(multa.Viatura.Matricula,
+								"Details",
+								"Viaturas",
+								new { id = multa.Viatura.Matricula},
+								null)
+
+			</td>
 		</tr>
 
 		}
