@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -62,15 +63,64 @@ namespace Multas.Controllers
         // POST: Agentes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="agente"></param>
+		/// <param name="foto"></param>
+		/// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Nome,Esquadra,Fotografia")] Agentes agente)
+        public ActionResult Create([Bind(Include = "Nome,Esquadra")] Agentes agente,
+									HttpPostedFileBase foto)
         {
+			string caminho="";
+			bool hafich = false;
+			//mensagem de erro / descartar o ficheiro / imagem por defeito  
+			//ha ficheiro?
+			if (foto == null) {
+				//nao ha ficheiro, atribui-se um avatar 
+				agente.Fotografia ="nouser.jpg";
+			}
+			else
+			{
+				//ha ficheiro?
+				//sera correto ?
+				if (foto.ContentType == "image/jpg" || foto.ContentType == "image/png")
+				{
+					string extensao = Path.GetExtension(foto.FileName).ToLower();
+					Guid g;
+					g = Guid.NewGuid();
+					string nome = g.ToString() + extensao;
+					caminho = Path.Combine(Server.MapPath("~/imagens"), nome);
+					agente.Fotografia = nome;
+					//assinalar q ha foto 
+					hafich = true;
+				}
+				else {
+					ModelState.AddModelError("", "Foto Inválida");
+				
+				}
+			}
             if (ModelState.IsValid)
             {
-                db.Agentes.Add(agente);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+				try
+				{
+					db.Agentes.Add(agente);
+					db.SaveChanges();
+					//guardar o fich no disco rigido 
+					if (hafich)
+					{
+						foto.SaveAs(caminho);
+					}
+					return RedirectToAction("Index");
+				}
+				catch (Exception) {
+					ModelState.AddModelError("", "Ocorreu um erro com a escrita" + " dos dados do novo agente");
+				}
+              
             }
 
             return View(agente);
